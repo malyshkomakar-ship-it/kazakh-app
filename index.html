@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Қазақ тілі - Казахский язык 5-11</title>
+    <meta name="description" content="Изучай казахский язык интерактивно - учебник, тесты, словарь и игры">
+    <meta name="theme-color" content="#00BFA5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Қазақ тілі">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Қазақ тілі</div>
+        <div class="nav-links">
+            <a href="#" class="nav-link active" data-section="home">Басты бет</a>
+            <a href="#" class="nav-link" data-section="textbook">Оқулық</a>
+            <a href="#" class="nav-link" data-section="tests">Тестер</a>
+            <a href="#" class="nav-link" data-section="dictionary">Сөздік</a>
+            <a href="#" class="nav-link" data-section="games">Ойындар</a>
+        </div>
+        <button class="burger" id="burger">☰</button>
+    </nav>
+
+    <main class="container">
+        <!-- ГЛАВНАЯ -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Қазақ тілін үйренейік!</h1>
+                <p>Изучай казахский язык интерактивно</p>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="wordsLearned">0</div>
+                        <div class="stat-label">Слов выучено</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="testsCompleted">0</div>
+                        <div class="stat-label">Тестов пройдено</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="streak">0</div>
+                        <div class="stat-label">Дней подряд</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card" data-section="textbook">
+                    <div class="feature-icon">📚</div>
+                    <h3>Оқулық</h3>
+                    <p>Грамматика и теория для классов 5-11</p>
+                </div>
+                <div class="feature-card" data-section="tests">
+                    <div class="feature-icon">✅</div>
+                    <h3>Тестер</h3>
+                    <p>Проверь свои знания</p>
+                </div>
+                <div class="feature-card" data-section="dictionary">
+                    <div class="feature-icon">📖</div>
+                    <h3>Сөздік</h3>
+                    <p>Казахско-русский словарь</p>
+                </div>
+                <div class="feature-card" data-section="games">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Ойындар</h3>
+                    <p>Учись играя</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- УЧЕБНИК -->
+        <section id="textbook" class="section">
+            <h2>Оқулық - Учебник</h2>
+            <div class="class-selector">
+                <button class="class-btn active" data-class="5">5 класс</button>
+                <button class="class-btn" data-class="6">6 класс</button>
+                <button class="class-btn" data-class="7">7 класс</button>
+                <button class="class-btn" data-class="8">8 класс</button>
+                <button class="class-btn" data-class="9">9 класс</button>
+                <button class="class-btn" data-class="10">10 класс</button>
+                <button class="class-btn" data-class="11">11 класс</button>
+            </div>
+
+            <div class="topics-list" id="topicsList">
+                <!-- Темы загружаются через JS -->
+            </div>
+
+            <div class="lesson-content" id="lessonContent" style="display:none;">
+                <button class="back-btn" id="backToTopics">← Назад к темам</button>
+                <div id="lessonBody"></div>
+            </div>
+        </section>
+
+        <!-- ТЕСТЫ -->
+        <section id="tests" class="section">
+            <h2>Тестер - Тесты</h2>
+            <div class="test-categories">
+                <button class="test-cat-btn active" data-category="grammar">Грамматика</button>
+                <button class="test-cat-btn" data-category="vocabulary">Лексика</button>
+                <button class="test-cat-btn" data-category="reading">Чтение</button>
+            </div>
+
+            <div class="test-area" id="testArea">
+                <div class="test-info" id="testInfo">
+                    <p>Выбери тему и начни тест!</p>
+                    <button class="start-test-btn" id="startTest">Начать тест</button>
+                </div>
+                <div class="test-question" id="testQuestion" style="display:none;">
+                    <div class="question-counter" id="questionCounter">Вопрос 1/10</div>
+                    <div class="question-text" id="questionText"></div>
+                    <div class="answers" id="answers"></div>
+                    <div class="test-progress">
+                        <div class="progress-bar" id="testProgress"></div>
+                    </div>
+                </div>
+                <div class="test-result" id="testResult" style="display:none;">
+                    <div class="result-score" id="resultScore"></div>
+                    <p id="resultText"></p>
+                    <button class="retry-btn" id="retryTest">Пройти ещё раз</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛОВАРЬ -->
+        <section id="dictionary" class="section">
+            <h2>Сөздік - Словарь</h2>
+            <div class="search-box">
+                <input type="text" id="dictSearch" placeholder="Поиск слова..." autocomplete="off">
+                <button class="search-btn" id="dictSearchBtn">🔍</button>
+            </div>
+
+            <div class="word-categories">
+                <button class="word-cat active" data-category="all">Все</button>
+                <button class="word-cat" data-category="family">Семья</button>
+                <button class="word-cat" data-category="school">Школа</button>
+                <button class="word-cat" data-category="food">Еда</button>
+                <button class="word-cat" data-category="nature">Природа</button>
+                <button class="word-cat" data-category="colors">Цвета</button>
+                <button class="word-cat" data-category="numbers">Числа</button>
+            </div>
+
+            <div class="dictionary-list" id="dictionaryList">
+                <!-- Слова загружаются через JS -->
+            </div>
+        </section>
+
+        <!-- ИГРЫ -->
+        <section id="games" class="section">
+            <h2>Ойындар - Игры</h2>
+            <div class="games-grid">
+                <div class="game-card" id="gameMatch">
+                    <div class="game-icon">🔗</div>
+                    <h3>Сөзді тап</h3>
+                    <p>Найди перевод слова</p>
+                    <button class="play-btn">Играть</button>
+                </div>
+                <div class="game-card" id="gameFlash">
+                    <div class="game-icon">🃏</div>
+                    <h3>Карточки</h3>
+                    <p>Запомни слова</p>
+                    <button class="play-btn">Играть</button>
+                </div>
+                <div class="game-card" id="gameSpell">
+                    <div class="game-icon">✏️</div>
+                    <h3>Жаз</h3>
+                    <p>Напиши слово правильно</p>
+                    <button class="play-btn">Играть</button>
+                </div>
+            </div>
+
+            <div class="game-area" id="gameArea" style="display:none;">
+                <button class="back-btn" id="backToGames">← Назад к играм</button>
+                <div id="gameContent"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(reg => console.log('SW registered:', reg))
+                .catch(err => console.log('SW error:', err));
+        }
+    </script>
+</body>
+</html>

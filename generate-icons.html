@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Icons</title>
+</head>
+<body>
+    <h1>Нажми кнопки чтобы скачать иконки</h1>
+    <button onclick="downloadIcon(192)">Скачать 192x192</button>
+    <button onclick="downloadIcon(512)">Скачать 512x512</button>
+    <canvas id="canvas"></canvas>
+    <script>
+        function generateIcon(size) {
+            const canvas = document.getElementById('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Фон
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#00BFA5');
+            gradient.addColorStop(1, '#00897B');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Буква Қ
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.5}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('Қ', size/2, size/2);
+            
+            return canvas.toDataURL('image/png');
+        }
+        
+        function downloadIcon(size) {
+            const dataUrl = generateIcon(size);
+            const link = document.createElement('a');
+            link.download = `icon-${size}.png`;
+            link.href = dataUrl;
+            link.click();
+        }
+    </script>
+</body>
+</html>

@@ -27,6 +27,10 @@ body {
     min-height: 100vh;
 }
 
+.lesson-content, .lesson-content * {
+    font-family: 'Noto Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
 /* NAVBAR */
 .navbar {
     background: var(--gradient);

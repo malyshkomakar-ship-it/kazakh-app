@@ -11,7 +11,7 @@ const textbookData = {
                     <table>
                         <tr><th>Буква</th><th>Звук</th><th>Пример</th></tr>
                         <tr><td>А а</td><td>[а]</td><td>ана (мама)</td></tr>
-                        <tr><td>Ә ә</td><td>[а] (мягкий)</td><td>әке (папа)</td></tr>
+                        <tr><td>Ә ә</td><td>[æ]</td><td>әке (папа)</td></tr>
                         <tr><td>Б б</td><td>[б]</td><td>балалар (дети)</td></tr>
                         <tr><td>В в</td><td>[в]</td><td>вагон (вагон)</td></tr>
                         <tr><td>Г г</td><td>[г]</td><td>гүл (цветок)</td></tr>
